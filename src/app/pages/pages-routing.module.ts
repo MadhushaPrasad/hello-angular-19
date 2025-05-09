@@ -31,7 +31,6 @@ const routes: Routes = [
       {
         path: 'items',
         component: ItemsComponent,
-        canActivate: [AuthGuard]
       },
       {
         path: 'orders',
