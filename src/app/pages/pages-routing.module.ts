@@ -3,10 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ItemsComponent } from './items/items.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
     path: '',
+    pathMatch:"full",
+    redirectTo:"customer",
     component: PagesComponent,
     children: [
       {
@@ -24,6 +27,10 @@ const routes: Routes = [
       {
         path:'items',
         component:ItemsComponent
+      },
+      {
+        path:'orders',
+        component:OrdersComponent
       }
     ]
   }
