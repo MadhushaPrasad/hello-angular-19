@@ -1,5 +1,5 @@
 <div class="px-4 col-6">
-  <form #customerForm="ngForm" ngForm class="form-group">
+  <form #customerForm="ngForm" ngForm class="form-group" (ngSubmit)="saveCustomer(customerForm)">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" ngModel #firstName="ngModel" class="form-control" id="firstName" name="firstName"

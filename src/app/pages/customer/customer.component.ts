@@ -18,36 +18,22 @@ export class CustomerComponent implements OnInit {
   email: string = ""
   password: string = ""
 
-  customers: any[] = [
-    { id: "c001", firstName: "Madhusha", lastName: "Prasad", email: "madushaprasad21@gmail.com", password: "123456" },
-    { id: "c002", firstName: "Kasun", lastName: "silva", email: "madushaprasad21@gmail.com", password: "123456" },
-    { id: "c003", firstName: "Nimal", lastName: "perera", email: "madushaprasad2321@gmail.com", password: "123456" },
-    { id: "c004", firstName: "kaml", lastName: "fernando", email: "madushaprasad3221@gmail.com", password: "123456" },
-    { id: "c005", firstName: "danum", lastName: "lakshan", email: "madushap32rasad21@gmail.com", password: "123456" },
-  ]
+  customers: any[] = []
 
   ngOnInit(): void {
 
   }
 
-  submitForm() {
-    console.log(this.firstName)
-    console.log(this.lastName)
-    console.log(this.email)
-    console.log(this.password)
-  }
+  saveCustomer(customerForm: NgForm) {
 
-
-  saveCustomer(firstName:any) {
-
-    console.log(firstName)
+    console.log(customerForm)
 
     const row = {
       id: "c" + Math.floor(Math.random() * 1000),
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password
+      firstName: customerForm.value.firstName,
+      lastName: customerForm.value.lastName,
+      email: customerForm.value.email,
+      password: customerForm.value.password
     }
 
     this.customers.push(row)
