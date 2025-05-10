@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-customer',
@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './customer.component.css'
 })
 export class CustomerComponent {
+
+  @ViewChild('customerForm')
+  customerForm!: NgForm;
 
 
   firstName: string = ""
@@ -45,6 +48,12 @@ export class CustomerComponent {
 
     this.customers.push(row)
 
+    this.customerForm.reset()
+
+  }
+
+  resetForm() {
+    this.customerForm.reset()
   }
 
 
