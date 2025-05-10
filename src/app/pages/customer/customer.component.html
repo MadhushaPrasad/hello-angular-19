@@ -1,30 +1,31 @@
 <div class="px-4 col-6">
-  <form #customerForm="ngForm" (ngSubmit)="saveCustomer()" class="form-group">
+  <form #customerForm="ngForm" class="form-group">
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input type="text" [(ngModel)]="firstName" class="form-control" id="firstName" name="firstName"
+      <input type="text" ngModel #firstName="ngModel" class="form-control" id="firstName" name="firstName"
         placeholder="Enter first name">
       <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input type="text" [(ngModel)]="lastName" class="form-control" name="lastName" id="lastName"
+      <input type="text" ngModel #lastName="ngModel" class="form-control" name="lastName" id="lastName"
         placeholder="Enter last name">
       <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" [(ngModel)]="email" class="form-control" id="email" name="email" placeholder="Enter email">
+      <input type="email" ngModel #email="ngModel" class="form-control" id="email" name="email"
+        placeholder="Enter email">
       <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" [(ngModel)]="password" class="form-control" id="password" name="password"
+      <input type="password" ngModel #password="ngModel" class="form-control" id="password" name="password"
         placeholder="Password">
     </div>
     <div class="btn-group">
-      <button type="submit" class="btn btn-success" (click)="saveCustomer()">save</button>
-      <button type="submit" class="btn btn-primary" (click)="saveCustomer()">update</button>
+      <button type="submit" class="btn btn-success">save</button>
+      <button type="submit" class="btn btn-primary" (click)="saveCustomer(firstName)">update</button>
       <button type="button" class="text-white btn btn-warning" (click)="resetForm()">clear</button>
     </div>
   </form>
