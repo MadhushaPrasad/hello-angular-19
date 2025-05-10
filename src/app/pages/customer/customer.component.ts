@@ -13,16 +13,9 @@ export class CustomerComponent implements OnInit {
   @ViewChild('customerForm')
   customerForm!: NgForm;
 
-  firstName: string = ""
-  lastName: string = ""
-  email: string = ""
-  password: string = ""
-
   customers: any[] = []
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   saveCustomer(customerForm: NgForm) {
     const row = {
