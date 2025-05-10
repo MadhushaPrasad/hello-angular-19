@@ -25,9 +25,6 @@ export class CustomerComponent implements OnInit {
   }
 
   saveCustomer(customerForm: NgForm) {
-
-    console.log(customerForm)
-
     const row = {
       id: "c" + Math.floor(Math.random() * 1000),
       firstName: customerForm.value.firstName,
@@ -35,11 +32,17 @@ export class CustomerComponent implements OnInit {
       email: customerForm.value.email,
       password: customerForm.value.password
     }
-
     this.customers.push(row)
-
     this.customerForm.reset()
+  }
 
+  selectedCustomer(selectedCustomer: any) {
+   this.customerForm.setValue({
+      firstName: selectedCustomer['firstName'],
+      lastName: selectedCustomer['lastName'],
+      email: selectedCustomer['email'],
+      password: selectedCustomer['password']
+    })
   }
 
   resetForm() {
