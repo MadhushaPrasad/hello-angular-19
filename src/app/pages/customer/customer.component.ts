@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,10 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit {
 
   @ViewChild('customerForm')
   customerForm!: NgForm;
-
 
   firstName: string = ""
   lastName: string = ""
@@ -27,6 +26,9 @@ export class CustomerComponent {
     { id: "c005", firstName: "danum", lastName: "lakshan", email: "madushap32rasad21@gmail.com", password: "123456" },
   ]
 
+  ngOnInit(): void {
+
+  }
 
   submitForm() {
     console.log(this.firstName)
@@ -36,7 +38,9 @@ export class CustomerComponent {
   }
 
 
-  saveCustomer() {
+  saveCustomer(firstName:any) {
+
+    console.log(firstName)
 
     const row = {
       id: "c" + Math.floor(Math.random() * 1000),

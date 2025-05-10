@@ -1,31 +1,31 @@
 <div class="px-4 col-6">
-  <form #customerForm="ngForm" class="form-group">
+  <form #customerForm="ngForm" ngForm class="form-group">
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input type="text" ngModel #firstName="ngModel" class="form-control" id="firstName" name="firstName"
-        placeholder="Enter first name">
-      <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
+        placeholder="Enter first name" required minlength="4">
+      <small id="firstNameHelp" class="text-muted form-text">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
       <input type="text" ngModel #lastName="ngModel" class="form-control" name="lastName" id="lastName"
-        placeholder="Enter last name">
+        placeholder="Enter last name" required minlength="4">
       <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="email" ngModel #email="ngModel" class="form-control" id="email" name="email"
-        placeholder="Enter email">
+        placeholder="Enter email" required>
       <!-- <small id="emailHelp" class="text-muted form-text">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" ngModel #password="ngModel" class="form-control" id="password" name="password"
-        placeholder="Password">
+        placeholder="Password" required>
     </div>
     <div class="btn-group">
       <button type="submit" class="btn btn-success">save</button>
-      <button type="submit" class="btn btn-primary" (click)="saveCustomer(firstName)">update</button>
+      <button type="submit" class="btn btn-primary" (click)="saveCustomer(customerForm)">update</button>
       <button type="button" class="text-white btn btn-warning" (click)="resetForm()">clear</button>
     </div>
   </form>
