@@ -1,35 +1,36 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PostService } from '../../services/post.service';
+import { Post } from '../../dto/post';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-post',
-  imports: [FormsModule,CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
 export class PostComponent implements OnInit {
 
-  @ViewChild('postForm')
-  postForm!: NgForm;
 
-  posts: any[] = []
+  form: FormGroup = new FormGroup({
+    id: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    userId: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    body: new FormControl('', [Validators.required, Validators.minLength(1)])
+  });
 
-  ngOnInit(): void { }
+  posts: Post[] = []
 
-  savePost(postForm: NgForm) {
-    const row = {
-      userId: postForm.value.userID,
-      id: postForm.value.postID,
-      title: postForm.value.postTitle,
-      body: postForm.value.postBody,
-    }
-    this.posts.push(row)
-    this.postForm.reset()
+  constructor(private postService: PostService) { }
+
+  ngOnInit(): void {
+    this.getAllPosts();
   }
 
   selectedPost(selectedPost: any) {
-    this.postForm.setValue({
+    this.form.setValue({
       userId: selectedPost['userId'],
       id: selectedPost['id'],
       title: selectedPost['title'],
@@ -38,7 +39,31 @@ export class PostComponent implements OnInit {
   }
 
   resetForm() {
-    this.postForm.reset()
+    this.form.reset()
   }
+
+  getAllPosts() {
+    this.postService.getAllPosts().subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
+  }
+
+  savePost() {
+  }
+
+  // savePost(postForm: NgForm) {
+
+  //   // this.postService.savePost(postForm).subscribe((response)=>{
+
+  //   // });
+  //   const row = {
+  //     userId: postForm.value.userID,
+  //     id: postForm.value.postID,
+  //     title: postForm.value.postTitle,
+  //     body: postForm.value.postBody,
+  //   }
+  //   this.posts.push(row)
+  //   this.postForm.reset()
+  // }
 
 }
