@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../dto/post';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-post',
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })

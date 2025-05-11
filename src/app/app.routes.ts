@@ -15,8 +15,7 @@ export const routes: Routes = [
     component: LoginComponent
   },{
     path:'pages',
-    loadChildren:()=> import("./pages/pages.module").then((m)=>m.PagesModule),
-    providers: [provideHttpClient()]
+    loadChildren:()=> import("./pages/pages.module").then((m)=>m.PagesModule)
   },
   {
     path:'**',
