@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { PostService } from '../../services/post.service';
 import { Post } from '../../dto/post';
 
+
 @Component({
   selector: 'app-post',
   imports: [CommonModule, ReactiveFormsModule],
@@ -11,6 +12,7 @@ import { Post } from '../../dto/post';
   styleUrl: './post.component.css'
 })
 export class PostComponent implements OnInit {
+
 
 
   form: FormGroup = new FormGroup({
@@ -29,12 +31,7 @@ export class PostComponent implements OnInit {
   }
 
   selectedPost(selectedPost: any) {
-    this.form.setValue({
-      userId: selectedPost['userId'],
-      id: selectedPost['id'],
-      title: selectedPost['title'],
-      body: selectedPost['body']
-    })
+    this.form.setValue(selectedPost)
   }
 
   resetForm() {
@@ -48,21 +45,51 @@ export class PostComponent implements OnInit {
   }
 
   savePost() {
+    this.postService.savePost(this.form.value).subscribe((response: boolean) => {
+      if (response) {
+        alert('Post saved successfully');
+      } else {
+        alert('Post not saved');
+      }
+      this.form.reset();
+    });
   }
 
-  // savePost(postForm: NgForm) {
+  updatePost() {
+    this.postService.updatePost(this.form.value).subscribe((response: boolean) => {
+      if (response) {
+        alert('Post updated successfully');
+      } else {
+        alert('Post not updated');
+      }
+      this.form.reset();
+    });
+  }
 
-  //   // this.postService.savePost(postForm).subscribe((response)=>{
+  deletePost(id: string) {
+    this.postService.deletePost(id).subscribe((response: boolean) => {
+      if (response) {
+        alert('Post deleted successfully');
+      } else {
+        alert('Post not deleted');
+      }
+      this.form.reset();
+    });
+  }
 
-  //   // });
-  //   const row = {
-  //     userId: postForm.value.userID,
-  //     id: postForm.value.postID,
-  //     title: postForm.value.postTitle,
-  //     body: postForm.value.postBody,
-  //   }
-  //   this.posts.push(row)
-  //   this.postForm.reset()
-  // }
+  getPostById() {
+    this.postService.getPostById(this.form.value.id).subscribe((response: Post) => {
+      if (response) {
+        this.form.setValue({
+          userId: response.userId,
+          id: response.id,
+          title: response.title,
+          body: response.body
+        })
+      } else {
+        alert('Post not fetched');
+      }
+    });
+  }
 
 }

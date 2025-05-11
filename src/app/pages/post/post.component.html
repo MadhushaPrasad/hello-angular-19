@@ -9,7 +9,7 @@
     <div class="form-group">
       <label for="id">Post ID</label>
       <input type="text" class="form-control" id="id" formControlName="id"
-        placeholder="Enter Post Id" required minlength="4">
+        placeholder="Enter Post Id" required minlength="4" (keypress)="getPostById()">
     </div>
 
     <div class="form-group">
@@ -26,14 +26,14 @@
 
     <div class="btn-group">
       <button type="submit" class="btn btn-success">Save</button>
-      <button type="button" class="btn btn-primary">Update</button>
-      <button type="button" class="btn btn-primary" (click)="getAllPosts()">Load Posts</button>
-      <button type="button" class="text-white btn btn-warning" (click)="resetForm()">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="updatePost()">Update</button>
+      <button type="button" class="text-white btn btn-warning" (click)="getAllPosts()">Load Posts</button>
+      <button type="button" class="text-white btn btn-danger" (click)="resetForm()">Clear</button>
     </div>
   </form>
 </div>
 
-<div class="px-4 py-4 col-6">
+<div class="px-4 py-4 col-12">
   <table class="table table-bordered table-hover">
     <thead class="bg-danger text-white">
       <tr>
@@ -41,6 +41,7 @@
         <th>Post ID</th>
         <th>Post Title</th>
         <th>Post Body</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -49,6 +50,7 @@
         <td>{{ post.id }}</td>
         <td>{{ post.title }}</td>
         <td>{{ post.body }}</td>
+        <td><button class="text-white btn" type="button" (click)="deletePost(post.id)">🗑️</button></td>
       </tr>
     </tbody>
   </table>
