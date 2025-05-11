@@ -41,6 +41,8 @@ export class PostComponent implements OnInit {
   getAllPosts() {
     this.postService.getAllPosts().subscribe((posts: Post[]) => {
       this.posts = posts;
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -52,6 +54,8 @@ export class PostComponent implements OnInit {
         alert('Post not saved');
       }
       this.form.reset();
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -63,6 +67,8 @@ export class PostComponent implements OnInit {
         alert('Post not updated');
       }
       this.form.reset();
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -74,6 +80,8 @@ export class PostComponent implements OnInit {
         alert('Post not deleted');
       }
       this.form.reset();
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -89,6 +97,8 @@ export class PostComponent implements OnInit {
       } else {
         alert('Post not fetched');
       }
+    }, (error) => {
+      console.log(error);
     });
   }
 
