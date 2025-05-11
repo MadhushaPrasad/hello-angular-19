@@ -19,11 +19,10 @@ export class PostComponent implements OnInit {
 
   savePost(postForm: NgForm) {
     const row = {
-      id: "c" + Math.floor(Math.random() * 1000),
-      firstName: postForm.value.firstName,
-      lastName: postForm.value.lastName,
-      email: postForm.value.email,
-      password: postForm.value.password
+      userId: postForm.value.userID,
+      id: postForm.value.postID,
+      title: postForm.value.postTitle,
+      body: postForm.value.postBody,
     }
     this.posts.push(row)
     this.postForm.reset()
@@ -31,10 +30,10 @@ export class PostComponent implements OnInit {
 
   selectedPost(selectedPost: any) {
     this.postForm.setValue({
-      user: selectedPost['firstName'],
-      lastName: selectedPost['lastName'],
-      email: selectedPost['email'],
-      password: selectedPost['password']
+      userId: selectedPost['userId'],
+      id: selectedPost['id'],
+      title: selectedPost['title'],
+      body: selectedPost['body']
     })
   }
 
