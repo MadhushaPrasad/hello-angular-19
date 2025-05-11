@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
-import { CustomerComponent } from './customer/customer.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { CustomerComponent } from './customer/customer.component';
     CommonModule,
     PagesRoutingModule,
     PagesComponent,
-    CustomerComponent
+    PostComponent
   ],
 })
 export class PagesModule { }

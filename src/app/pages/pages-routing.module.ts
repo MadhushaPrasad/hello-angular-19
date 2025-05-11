@@ -1,40 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
-import { CustomerComponent } from './customer/customer.component';
-import { ItemsComponent } from './items/items.component';
-import { OrdersComponent } from './orders/orders.component';
 import { AuthGuard } from '../guard/auth-guard.service';
+import { PostComponent } from './post/post.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'customer'
+    redirectTo: 'post'
   },
   {
     path: '',
     component: PagesComponent,
     children: [
       {
-        path: 'customer/:id/:name',
-        component: CustomerComponent
+        path: 'post/:id/:name',
+        component: PostComponent
       },
       {
-        path: 'customer/:id',
-        component: CustomerComponent
+        path: 'post/:id',
+        component: PostComponent
       },
       {
-        path: 'customer',
-        component: CustomerComponent
-      },
-      {
-        path: 'items',
-        component: ItemsComponent,
-      },
-      {
-        path: 'orders',
-        component: OrdersComponent
+        path: 'post',
+        component: PostComponent
       }
     ]
   }
